@@ -22,6 +22,7 @@ public class RedNoseMacro {
 
 
     public static void startRedNoseMacro(JLabel label){
+
         isThreadRunning = true;
         label.setText("빨간코 매크로 사용중");
         teleportThread();

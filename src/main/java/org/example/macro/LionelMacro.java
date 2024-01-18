@@ -80,11 +80,8 @@ public class LionelMacro {
             protected Void doInBackground() throws Exception {
                 // 백그라운드에서 실행되는 작업
                 while (isThreadRunning) {
-                    keyboardUtil.pressKey("END");
-                    keyboardUtil.releaseKey("END");
-                    Thread.sleep(500);
-                    keyboardUtil.pressKey("HOME");
-                    keyboardUtil.releaseKey("HOME");
+                    keyboardUtil.pressKey("DELETE");
+                    keyboardUtil.releaseKey("DELETE");
                     Thread.sleep(500);
                     keyboardUtil.pressKey("DELETE");
                     keyboardUtil.releaseKey("DELETE");

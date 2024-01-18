@@ -1,6 +1,7 @@
 package org.example.util;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class KeyboardUtil {
@@ -64,6 +65,12 @@ public class KeyboardUtil {
     }
 
 
+    public void click(int x , int y ){
+        robot.mouseMove(x, y);
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
+
     public void pressKey(String key) {
         int keyCode = getKeyCode(key);
         robot.keyPress(keyCode);
@@ -104,6 +111,8 @@ public class KeyboardUtil {
                 return KeyEvent.VK_END;
             case "HOME":
                 return KeyEvent.VK_HOME;
+            case "INSERT":
+                return KeyEvent.VK_INSERT;
             case "PAGE_UP":
                 return KeyEvent.VK_PAGE_UP;
             case "DELETE":

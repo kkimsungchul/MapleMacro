@@ -1,5 +1,6 @@
 package org.example.gui;
 
+import org.example.macro.DoubleLionelMacro;
 import org.example.macro.InPlaceMacro;
 import org.example.macro.LionelMacro;
 import org.example.macro.RedNoseMacro;
@@ -23,6 +24,7 @@ public class GuiMain {
         InPlaceMacro.initInPlaceMacroClass();
         RedNoseMacro.initRedNoseMacroClass();
         LionelMacro.initLionelMacroClass();
+        DoubleLionelMacro.initLionelMacroClass();
 
         JFrame frame = new JFrame("Threaded Swing Example");
         JPanel inPlaceMacroPanel = new JPanel();
@@ -39,6 +41,11 @@ public class GuiMain {
         JLabel lionelMacroLabel = new JLabel("라이오넬 시작/종료 버튼");
         JLabel lionelMacroStatus = new JLabel("라이오넬 매크로 정지중");
         JButton lionelMacroButton = new JButton("Start/Stop Thread");
+
+        JPanel doubleLionelMacroPanel = new JPanel();
+        JLabel doubleLionelMacroLabel = new JLabel("더블 라이오넬 시작/종료 버튼");
+        JLabel doubleLionelMacroStatus = new JLabel("더블 라이오넬 매크로 정지중");
+        JButton doubleLionelMacroButton = new JButton("더블 Start/Stop Thread");
 
 
         JPanel downBannerPanel = new JPanel();
@@ -64,6 +71,11 @@ public class GuiMain {
         lionelMacroStatus.setSize(300,50);
         lionelMacroButton.setSize(300,50);
 
+        doubleLionelMacroPanel.setSize(300,200);
+        doubleLionelMacroLabel.setSize(300,50);
+        doubleLionelMacroStatus.setSize(300,50);
+        doubleLionelMacroButton.setSize(300,50);
+
         downBannerPanel.setSize(300,200);
         downBannerLabel.setSize(300,50);
         downBannerStatus.setSize(300,50);
@@ -74,6 +86,7 @@ public class GuiMain {
         redNoseMacroPanel.setLayout(new FlowLayout());
         lionelMacroPanel.setLayout(new FlowLayout());
         downBannerPanel.setLayout(new FlowLayout());
+        doubleLionelMacroPanel.setLayout(new FlowLayout());
 
 
         // 버튼에 대한 이벤트 리스너 등록
@@ -122,6 +135,23 @@ public class GuiMain {
             }
         });
 
+        doubleLionelMacroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!isThreadRunning) {
+                    // 스레드 시작
+                    startDoubleLionelMacroThread(doubleLionelMacroStatus);
+                    doubleLionelMacroButton.setText("Stop Thread");
+                } else {
+                    // 스레드 종료
+                    stopDoubleLionelMacroThread(doubleLionelMacroStatus);
+                    doubleLionelMacroButton.setText("Start Thread");
+                }
+            }
+        });
+
+
+
         downBannerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -142,6 +172,10 @@ public class GuiMain {
         lionelMacroPanel.add(lionelMacroStatus);
         lionelMacroPanel.add(lionelMacroButton);
 
+        doubleLionelMacroPanel.add(doubleLionelMacroLabel);
+        doubleLionelMacroPanel.add(doubleLionelMacroStatus);
+        doubleLionelMacroPanel.add(doubleLionelMacroButton);
+
         downBannerPanel.add(downBannerLabel);
         downBannerPanel.add(downBannerStatus);
         downBannerPanel.add(downBannerButton);
@@ -152,9 +186,10 @@ public class GuiMain {
         frame.add(inPlaceMacroPanel);
         frame.add(redNoseMacroPanel);
         frame.add(lionelMacroPanel);
+        frame.add(doubleLionelMacroPanel);
         frame.add(downBannerPanel);
         // 프레임 크기 설정
-        frame.setSize(300, 600);
+        frame.setSize(500, 600);
         // 프레임 표시
         frame.setVisible(true);
     }
@@ -212,12 +247,24 @@ public class GuiMain {
             LionelMacro.stopLionelMacro(label);
     }
 
+    private static void startDoubleLionelMacroThread(JLabel label) {
+        if(changeStatus("start"))
+            DoubleLionelMacro.startDoubleLionelMacro(label);
+    }
+
+    private static void stopDoubleLionelMacroThread(JLabel label) {
+        if(changeStatus("stop"))
+            DoubleLionelMacro.stopDoubleLionelMacro(label);
+    }
+    //
+
 
 
     private static void allStop(JLabel label){
         RedNoseMacro.stopRedNoseMacro(label);
         InPlaceMacro.stopInplaceMacro(label);
         LionelMacro.stopLionelMacro(label);
+        DoubleLionelMacro.stopDoubleLionelMacro(label);
     }
 
 }
