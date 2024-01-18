@@ -1,5 +1,17 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.johnrengelman:shadow:8.1.1"
+    }
+}
+
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'org.example'
@@ -9,15 +21,20 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
 }
 
+
 jar {
+    finalizedBy shadowJar
     manifest {
         attributes(
-                'Main-Class': 'org.example.Main'
+                'Main-Class': 'org.example.gui.GuiMain'
         )
     }
 }

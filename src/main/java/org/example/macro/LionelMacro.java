@@ -40,8 +40,12 @@ public class LionelMacro {
                 // 백그라운드에서 실행되는 작업
                 while (isThreadRunning) {
                     // 예시: 1초마다 레이블 업데이트
-                    keyboardUtil.teleport("LEFT",5000);
-                    keyboardUtil.teleport("RIGHT",5000);
+                    keyboardUtil.teleport("LEFT",8000);
+                    Thread.sleep(1000);
+                    keyboardUtil.jump();
+                    Thread.sleep(1000);
+                    keyboardUtil.jump();
+                    keyboardUtil.teleport("RIGHT",8000);
                 }
                 return null;
             }

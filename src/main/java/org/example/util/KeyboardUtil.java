@@ -74,6 +74,10 @@ public class KeyboardUtil {
         robot.keyRelease(keyCode);
     }
 
+    public void jump(){
+        int keyCode = getKeyCode("ALT");
+        robot.keyRelease(keyCode);
+    }
     public int getKeyCode(String key) {
         switch (key.toUpperCase()) {
             case "A":
