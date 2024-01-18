@@ -1,10 +1,8 @@
 package org.example;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
-public class InPlaceMacro {
+public class InPlaceMacroMain {
     static Robot robot;
     public static void main(String[] args) {
 

@@ -16,12 +16,14 @@ public class Main {
         try {
             robot = new Robot();
             try {
-
                 Thread teleportThread = new Thread(() -> {
                     try {
                         while(true){
                             move("LEFT");
                             move("RIGHT");
+
+//                            teleport("LEFT");
+//                            teleport("RIGHT");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -114,6 +116,18 @@ public class Main {
                 Thread.sleep(500);
                 releaseKey("PAGE_DOWN");
                 releaseKey("DOWN");
+            }else if (directionWord.equalsIgnoreCase("LEFT")){
+                pressKey("LEFT");
+                pressKey("PAGE_DOWN");
+                Thread.sleep(500);
+                releaseKey("PAGE_DOWN");
+                releaseKey("LEFT");
+            }else if (directionWord.equalsIgnoreCase("RIGHT")){
+                pressKey("RIGHT");
+                pressKey("PAGE_DOWN");
+                Thread.sleep(500);
+                releaseKey("PAGE_DOWN");
+                releaseKey("RIGHT");
             }
         }catch (Exception e) {
             System.err.println("teleport error");
