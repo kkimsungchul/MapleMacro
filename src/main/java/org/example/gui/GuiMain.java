@@ -40,6 +40,12 @@ public class GuiMain {
         JLabel lionelMacroStatus = new JLabel("라이오넬 매크로 정지중");
         JButton lionelMacroButton = new JButton("Start/Stop Thread");
 
+
+        JPanel downBannerPanel = new JPanel();
+        JLabel downBannerLabel = new JLabel("모든 매크로 종료");
+        JLabel downBannerStatus = new JLabel("모든 매크로 종료 중");
+        JButton downBannerButton = new JButton("Start/Stop Thread");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(2, 1));
 
@@ -58,10 +64,16 @@ public class GuiMain {
         lionelMacroStatus.setSize(300,50);
         lionelMacroButton.setSize(300,50);
 
+        downBannerPanel.setSize(300,200);
+        downBannerLabel.setSize(300,50);
+        downBannerStatus.setSize(300,50);
+        downBannerButton.setSize(300,50);
+
 
         inPlaceMacroPanel.setLayout(new FlowLayout());
         redNoseMacroPanel.setLayout(new FlowLayout());
         lionelMacroPanel.setLayout(new FlowLayout());
+        downBannerPanel.setLayout(new FlowLayout());
 
 
         // 버튼에 대한 이벤트 리스너 등록
@@ -110,6 +122,13 @@ public class GuiMain {
             }
         });
 
+        downBannerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                allStop(downBannerLabel);
+            }
+        });
+
         // 컴포넌트들을 패널에 추가
         inPlaceMacroPanel.add(inPlaceMacroLabel);
         inPlaceMacroPanel.add(inPlaceMacroStatus);
@@ -123,12 +142,17 @@ public class GuiMain {
         lionelMacroPanel.add(lionelMacroStatus);
         lionelMacroPanel.add(lionelMacroButton);
 
+        downBannerPanel.add(downBannerLabel);
+        downBannerPanel.add(downBannerStatus);
+        downBannerPanel.add(downBannerButton);
+
 
 
         // 프레임에 패널 추가
         frame.add(inPlaceMacroPanel);
         frame.add(redNoseMacroPanel);
         frame.add(lionelMacroPanel);
+        frame.add(downBannerPanel);
         // 프레임 크기 설정
         frame.setSize(300, 600);
         // 프레임 표시
@@ -193,7 +217,7 @@ public class GuiMain {
     private static void allStop(JLabel label){
         RedNoseMacro.stopRedNoseMacro(label);
         InPlaceMacro.stopInplaceMacro(label);
-
+        LionelMacro.stopLionelMacro(label);
     }
 
 }
