@@ -64,8 +64,8 @@ public class DoubleLionelMacro {
                     keyboardUtil.releaseKey("A");
                     keyboardUtil.pressKey("ART");
                     keyboardUtil.releaseKey("ART");
-                    keyboardUtil.click(21,991);
                     Thread.sleep(100);
+                    keyboardUtil.click(21,991);
                     keyboardUtil.teleport("RIGHT",1500);
                     keyboardUtil.pressKey("A");
                     keyboardUtil.releaseKey("A");
